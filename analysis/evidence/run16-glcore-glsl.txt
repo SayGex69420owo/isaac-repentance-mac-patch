@@ -1,0 +1,10 @@
+# Run 16: steam-traced-run.sh --no-overlay --glcore 180 (pasted by the user)
+build: "dispatch slot: shader_source_ARB", isaacgl.dylib x86_64
+isaacgl: active in Rep+ (pid 9013); both Rep+ contexts upgraded to 4.1 core, shared with Wine's core context,
+  default VAO 1/2, "GLSL translation on"; 73 isaacgl messages in total
+engine log: OpenGL version 4.1 Metal - 90.5 / GLSL 4.10; Shader Initialization Start .. End with NO errors
+  (all 20 shaders), viewport 960x540, mod list begins; Steam-cloud save load messages as before (cloud off)
+outcome: still running after 181 s (stopped by the timer), cpu ~114 % (llvmpipe run: ~190 %)
+exceptions: debug strings only (40010006 x666), 4001000a x2, 406d1388 x2; NO access violations
+trace tail: win32u_wglSwapBuffers / macdrv_surface_swap on the game window: frames are being presented
+no Mesa loaded; no Mesa messages

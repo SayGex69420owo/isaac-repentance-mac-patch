@@ -1,0 +1,12 @@
+# Run 13: steam-traced-run.sh --no-overlay --mesa zink --no-mods 180 (pasted by the user)
+mods: EnableMods=0; overlay disabled; Mesa 26.2.4 GALLIUM_DRIVER=zink
+outcome: game exited by itself after 26 s (crash)
+vulkan-1.dll + winevulkan.dll loaded, then unloaded right away (zink found no usable device)
+MoltenVK 1.4.0 (Vulkan 1.4.323) initialised 3x in-process
+engine log.txt:
+  [ERROR] - GLFW Error 65544: WGL: Failed to set pixel format for dummy context: Environment variable not found.
+  [ERROR] - GLFW Error 65542: WGL: The driver does not appear to support OpenGL
+  [ASSERT] - Failed to create OpenGL window / context
+  [INFO] - Caught exception, writing minidump...
+follow-on fault: c0000005 at 0x00A19FB9 (isaac-ng .text), read 0x2B4 (null object after failed GL init), winedbg --auto
+zink's own error text was not in the top-25 non-Wine lines (report since changed to list them in order)

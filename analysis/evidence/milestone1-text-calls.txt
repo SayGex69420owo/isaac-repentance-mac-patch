@@ -1,0 +1,7 @@
+# Milestone 1 evidence: Rep+ .text executing under Wine (Steam-launched, run 6, game pid 0674)
+# columns: seconds (from the first call):pid:tid:Call API(args) ret=<caller return address>
+0.000:0674:0678:Call KERNEL32.CreateDirectoryA(00c72a28 "C:\\users\\user/Documents/",00000000) ret=009a9b09
+0.000:0674:0678:Call KERNEL32.CreateDirectoryA(00c72a28 "C:\\users\\user/Documents/My Games/",00000000) ret=009a9b09
+0.000:0674:0678:Call KERNEL32.CreateDirectoryA(00c72a28 "C:\\users\\user/Documents/My Games/Binding of Isaac Repentance+/",00000000) ret=009a9b09
+0.094:0674:0678:Call user32.RegisterClassExW(0026f850) ret=00a813ab
+0.094:0674:0678:Call user32.CreateWindowExW(00000300,0000c052,00ba3e54 L"GLFW message window",06000000,00000000,00000000,00000001,00000001,00000000,00000000,00400000,00000000) ret=00a81405

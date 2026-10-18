@@ -1,0 +1,22 @@
+# Run 10: Steam started with WINEDEBUG=+pid,+timestamp,+seh,+loaddll; Rep+ via steam.exe -applaunch 250900
+# per-app override dinput8 = disabled. Excerpt pasted from the Mac by the user (full log local).
+outcome: game still running after 91s, cpu 100.3% (then closed); no game window; log.txt empty
+game windows pid 0878, main thread 0884
+
+modules (input/graphics/audio): OPENGL32 79DE0000 builtin, EOSSDK, OpenAL32 787D0000,
+  gameoverlayrenderer.dll 77FC0000 native, winemac.drv 76930000, hid.dll 76750000,
+  xinput1_4.dll 76770000 builtin
+
+exceptions: 40010006 x6, 4001000a x2 (OutputDebugString "Shutdown handler: initialize."), c0000005 x2
+
+first real fault (main thread 0884), as dispatched to the 32-bit side:
+  RtlUnwindEx code=c0000005 ... info[1]=0000000000002ec5
+  dispatch_exception code=c0000005 (EXCEPTION_ACCESS_VIOLATION) flags=0 addr=7BDD1135
+   info[0]=00000000  info[1]=00002EC5
+   eip=7bdd1135 esp=7bd50f4a ebp=0026f10c eflags=00200206
+   eax=00000099 ebx=0026f748 ecx=00000014 edx=7be3db90
+   esi=0026f0f4 edi=76771260 cs=0107 ds=0023 es=0023 fs=010f gs=0023 ss=0023
+  call_seh_handlers: 780A43B7 (gameoverlayrenderer.dll range) -> 00B11164 -> 00B13685 -> 00AEF9D0
+   (isaac-ng .text, _except_handler4, filter 00931458); handlers return 1 (continue search) -> loop
+
+macOS sample at ~30 s: time almost entirely in Rosetta runtime routines (no symbols for guest code).

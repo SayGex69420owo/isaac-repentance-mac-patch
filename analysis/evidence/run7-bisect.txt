@@ -1,0 +1,22 @@
+# Run-7 crash follow-up, collected on macOS 26.6.2 (pasted from the Mac by the user)
+
+## Modules containing the run-7 crash addresses (from +loaddll in local logs)
+log: steam-run-6-traced.log (294 modules)
+  0x7674aa30 rdi in faulting thread     -> C:\\windows\\system32\\dinput8.dll (base 0x76740000, +0xaa30, next module at 0x76790000)
+  0x7674d93f RegisterClassExW caller    -> C:\\windows\\system32\\dinput8.dll (base 0x76740000, +0xd93f, next module at 0x76790000)
+  0x7773b8ef RegisterClassExW caller    -> C:\\Program Files (x86)\\Steam\\steamclient.dll (base 0x76b00000, +0xc3b8ef, next module at 0x77fc0000)
+  0x7b7e9960 thread proc                -> C:\\windows\\system32\\sechost.dll (base 0x7b7e0000, +0x9960, next module at 0x7b810000)
+  0x7bdd110c fault rip                  -> C:\\windows\\system32\\wow64cpu.dll (base 0x7bdd0000, +0x110c, next module at 0x7bdf0000)
+log: steam-run-7-traced.log (304 modules)
+  (identical module mapping to run 6)
+
+## Bisection (repplus-patch/tests/bisect-devnotify.sh), Windows Steam running and logged in
+devnotify32.exe                                    survives
+devnotify32-laa.exe                                survives
+devnotify32-laa.exe --hide                         survives
+devnotify32-laa.exe --dlls GAME                    survives
+devnotify32-laa.exe --dlls GAME --steam            survives (did not exit; stopped by the 30 s timer after step 3)
+devnotify32-laa.exe --hide --dlls GAME --steam     survives (did not exit; stopped by the 30 s timer after step 3)
+
+## First exception per crashing case
+(none crashed)

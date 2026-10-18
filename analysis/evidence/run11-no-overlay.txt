@@ -1,0 +1,13 @@
+# Run 11: steam-traced-run.sh --no-overlay 120 (pasted from the Mac by the user)
+per-app overrides: gameoverlayrenderer disabled, dinput8 default
+outcome: game exited by itself after 4s (no window reported)
+game windows pid 07c8, 4363 trace lines
+modules: OPENGL32 (builtin), EOSSDK, OpenAL32, winemac.drv, hid, dinput8 (builtin), xinput1_4 (builtin)
+  gameoverlayrenderer.dll NOT loaded (override effective)
+exceptions: 16 = 40010006 x12, 4001000a x4 (OutputDebugString only; "Shutdown handler: initialize." ... "cleanup.")
+  NO access violations (runs 7-10 all had the wow64cpu+0x1135 fault)
+wgl: init_gl_info GL version 2.1 Metal - 90.5 (legacy), GL3_Core/GL4_Core 4.1 Metal - 90.5, renderer Apple M5
+engine log.txt (2 lines):
+  [INFO] - OpenGL version 2.1 Metal - 90.5
+  [INFO] - GLSL version 1.20
+webhelper wrapper status: cef.win64 Valve's original (wrapper missing), cef.win7 / cef.win7x64 wrapper installed

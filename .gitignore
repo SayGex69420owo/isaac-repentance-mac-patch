@@ -1,0 +1,45 @@
+# Allowlist: ignore everything at the top level, then opt in to our own work.
+# Game binaries, Steam content, decrypted executables, saves and third-party
+# tool distributions must never be committed.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/setup.sh
+!/analysis/
+!/repplus-patch/
+!/scripts/
+
+# analysis: scripts and written evidence only
+/analysis/inputs/
+/analysis/.venv/
+/analysis/ghidra-projects/
+/analysis/**/*.bin
+/analysis/**/*.dump
+/analysis/**/*.exe
+/analysis/**/*.dll
+/analysis/**/*.a
+
+# patch work: no prefixes, runtimes or game files
+/repplus-patch/prefix/
+/repplus-patch/**/drive_c/
+/repplus-patch/**/build/
+
+# generic
+.DS_Store
+__pycache__/
+*.pyc
+*.o
+*.log
+
+# large local traces (summaries go to analysis/evidence/)
+/analysis/logs/
+/analysis/dumps/
+
+# per-run reports written on the Mac by the launch/setup scripts; they contain
+# local user, Steam account and path details and are never committed
+/analysis/evidence/steam-traced-summary.txt
+/analysis/evidence/save-status.txt
+/analysis/evidence/last-crash.txt
+/analysis/evidence/play-log.txt
+/analysis/evidence/game-trace-tail.txt

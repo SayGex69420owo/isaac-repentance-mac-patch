@@ -1,0 +1,7 @@
+devnotify32: pointer size 4, pid 952
+worker thread running (tid 1316)
+step 1 ok: CreateThread exit code 42
+0444:fixme:win:NtUserActivateKeyboardLayout Aliased keyboard layout not yet implemented
+window 000301B6
+step 2: RegisterDeviceNotificationW -> 001562F0 (err 1400)
+step 3 ok: survived 2s after registration, exiting cleanly

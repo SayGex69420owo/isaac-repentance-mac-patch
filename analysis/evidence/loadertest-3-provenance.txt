@@ -1,0 +1,113 @@
+isaac-ng.exe sections:
+  .text    0x00401000-0x00b17134
+  .rdata   0x00b18000-0x00bf7948
+  .data    0x00bf8000-0x00c9caa4
+  .rsrc    0x00c9d000-0x00ca0b20
+  .reloc   0x00ca1000-0x00cfd93c
+  .bind    0x00cfe000-0x00d2b808
+
+calls into Wine builtins, attributed by caller (return address):
+      3144  wow64.dll
+      1997  kernelbase.dll
+       750  ucrtbase.dll
+       598  EOSSDK-Win32-Shipping.dll
+       529  CRYPT32.dll
+       366  rpcrt4.dll
+       256  steam_api.dll
+       249  anonymous@0x01ec0000
+       169  OpenAL32.dll
+       135  msacm32.dll
+       134  isaac-ng.exe:.bind
+       119  msvcrt.dll
+        62  SHELL32.dll
+        61  Secur32.dll
+        58  MSVCP140.dll
+        46  ntdll.dll
+        32  anonymous@0x01eb0000
+        23  shlwapi.dll
+        16  netapi32.dll
+        12  sechost.dll
+        10  Lua5.3.3r.dll
+         9  combase.dll
+         7  cryptbase.dll
+         6  libcurl.dll
+         5  wow64cpu.dll
+
+first distinct APIs called from anonymous@0x01eb0000 (ret, api, args):
+   0x1eb73b0 KERNEL32.GetSystemTimeAsFileTime 0026f660
+   0x1eb73d5 KERNEL32.QueryPerformanceCounter 0026f658
+   0x1eb6f25 KERNEL32.IsProcessorFeaturePresent 0000000a
+   0x1eb866a KERNEL32.LoadLibraryExW 01ed0550 L"api-ms-win-core-synch-l1-2-0",00000000,00000800
+   0x1eb864a KERNEL32.GetProcAddress 7bc00000,01ed0604 "InitializeCriticalSectionEx"
+   0x1eb87c7 kernelbase.InitializeCriticalSectionEx 01ed9cd4,00000fa0,00000000
+   0x1eb86d2 kernelbase.FlsAlloc 01eb8272
+   0x1eb8786 kernelbase.FlsSetValue 00000002,01ed9cac
+   0x1eb7441 ntdll.RtlInitializeSListHead 01ed9980
+   0x1eb100b ntdll.RtlInitializeCriticalSection 01ed9460
+   0x1eb3e33 KERNEL32.IsDebuggerPresent 
+   0x1eb3e8d KERNEL32.GetModuleHandleA 0026f658 "ntdll.dll"
+   0x1eb3ea9 ntdll.NtSetInformationThread fffffffe,00000011,00000000,00000000
+   0x1eb3eb5 KERNEL32.GetTickCount 
+   0x1eb4692 advapi32.RegOpenKeyExW 80000001,0026cb38 L"Software\\Valve\\Steam\\ActiveProcess",00000000,00020019,0026cd50
+   0x1eb43fb KERNEL32.GetModuleFileNameW 00000000,0026cb44,00000104
+   0x1eb442d KERNEL32.WideCharToMultiByte 0000fde9,00000000,0026cb44 L"C:\\IsaacRepPlus-loadertest\\isaac-ng.exe",ffffffff,0026c734,
+   0x1eb4de4 KERNEL32.OutputDebugStringA 01ecd7d0 "[S_API] SteamAPI_Init(): SteamAPI_IsSteamRunning() did not locate a running inst
+   0x1eb3f06 KERNEL32.GetCommandLineW 
+   0x1eb4781 KERNEL32.GetCurrentDirectoryW 00001000,0026b1a4
+   0x1eb47f4 KERNEL32.GetFileAttributesExW 0026b1a4 L"C:\\IsaacRepPlus-loadertest\\appmanifest_250900.acf",00000000,0026e1fc
+   0x1eb1911 advapi32.RegOpenKeyExA 80000002,01ecd5e4 "Software\\Valve\\Steam",00000000,00000201,0026e228
+   0x1eb411f shell32.ShellExecuteA 00000000,01ecd6a0 "open",01ed8840 "steam://run/250900//",00000000,00000000,00000001
+
+first distinct APIs called from anonymous@0x01ec0000 (ret, api, args):
+   0x1ec0114 KERNEL32.LoadLibraryExW 01ed0550 L"api-ms-win-core-synch-l1-2-0",00000000,00000800
+   0x1ec01ef KERNEL32.GetProcAddress 7bc00000,01ed0604 "InitializeCriticalSectionEx"
+   0x1ec03b6 kernelbase.InitializeCriticalSectionEx 01eda158,00000fa0,00000000
+   0x1ec5b4c KERNEL32.GetProcessHeap 
+   0x1ec02b1 kernelbase.FlsAlloc 01ec166f
+   0x1ec192f KERNEL32.GetLastError 
+   0x1ec032f kernelbase.FlsGetValue 00000003
+   0x1ec0371 kernelbase.FlsSetValue 00000003,ffffffff
+   0x1ec0032 ntdll.RtlAllocateHeap 00150000,00000008,00000364
+   0x1ec059e KERNEL32.GetStartupInfoW 0026f53c
+   0x1ec0694 KERNEL32.GetStdHandle fffffff6
+   0x1ec06a6 KERNEL32.GetFileType 00000008
+   0x1ec58f3 KERNEL32.GetCommandLineA 
+   0x1ec58fe KERNEL32.GetCommandLineW 
+   0x1ec51ff KERNEL32.GetACP 
+   0x1ec56e7 KERNEL32.IsValidCodePage 000004e4
+   0x1ec5723 KERNEL32.GetCPInfo 000004e4,0026f330
+   0x1ec2e52 KERNEL32.MultiByteToWideChar 000004e4,00000001,0026f208 " \x01\x02\x03\x04\x05\x06\x07\x08\t\n\x0b\x0c\r\x0e\x0f\x10\x1
+   0x1ec68c1 KERNEL32.GetStringTypeW 00000001,0026e988 L" \0001\0002\0003\0004\0005\0006\0007\0008\t\n\000b\000c\r\000e\000f\00
+   0x1ec03ff kernelbase.LCMapStringEx 00000000,00000100,0026e948 L" \0001\0002\0003\0004\0005\0006\0007\0008\t\n\000b\000c\r\000
+   0x1ec59fd KERNEL32.WideCharToMultiByte 000004e4,00000000,0026e738 L" \0001\0002\0003\0004\0005\0006\0007\0008\t\n\000b\000c\r\000
+   0x1ecaa20 KERNEL32.IsProcessorFeaturePresent 0000000a
+   0x1ec5033 KERNEL32.GetModuleFileNameW 00000000,0026f3a0,00000105
+   0x1ec0278 KERNEL32.AreFileApisANSI 
+   0x1ec5a47 KERNEL32.GetEnvironmentStringsW 
+   0x1ec5ad2 KERNEL32.FreeEnvironmentStringsW 00e3b5c8
+   0x1ec0064 KERNEL32.HeapFree 00150000,00000000,00e3da20
+
+first distinct APIs called from isaac-ng.exe:.bind (ret, api, args):
+   0xcfe85b KERNEL32.GetModuleHandleA 0026f7a7 "kernel32.dll"
+   0xcfed0f KERNEL32.GetProcAddress 7beb0000,0026f7ea "LoadLibraryA"
+   0xcfed3e KERNEL32.LoadLibraryA 0026f7b4 "msvcrt.dll"
+   0xcfef0e msvcrt.calloc 00000001,0002ac98
+   0xcff4b6 KERNEL32.VirtualAlloc 10000000,0002d000,00002000,00000004
+   0xcff975 KERNEL32.IsBadReadPtr 01ed63dc,00000014
+   0xcffc97 KERNEL32.VirtualProtect 01eb1000,0001bc00,00000020,0026fa5c
+   0xcffbb3 KERNEL32.VirtualFree 01edb000,00001600,00004000
+   0xcffd49 msvcrt.free 016b0020
+   0xd003f7 KERNEL32.GetLastError 
+   0xd00a7a KERNEL32.TerminateProcess ffffffff,00000035
+
+execution-region transitions (first API in each run):
+   isaac-ng.exe:.bind KERNEL32.GetModuleHandleA
+   anonymous@0x01eb0000 KERNEL32.GetSystemTimeAsFileTime
+   anonymous@0x01ec0000 KERNEL32.LoadLibraryExW
+   anonymous@0x01eb0000 ntdll.RtlInitializeSListHead
+   anonymous@0x01ec0000 ntdll.RtlAllocateHeap
+   anonymous@0x01eb0000 ntdll.RtlInitializeCriticalSection
+   anonymous@0x01ec0000 ntdll.RtlAllocateHeap
+   isaac-ng.exe:.bind msvcrt.free
+   anonymous@0x01eb0000 KERNEL32.IsDebuggerPresent
+   isaac-ng.exe:.bind KERNEL32.GetLastError

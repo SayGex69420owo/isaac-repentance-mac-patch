@@ -1,0 +1,17 @@
+# Run 7 (overlay off, game pid 0510): first exception + context, thread 0538 (sechost device_notify thread)
+0.213:0510:0538:Call TLS callback (proc=00AEFEC1,module=00400000,reason=THREAD_ATTACH,reserved=0)
+0.213:0510:0538:Ret  TLS callback (proc=00AEFEC1,module=00400000,reason=THREAD_ATTACH,reserved=0)
+0.213:0510:0538:Starting thread proc 7B7E9960 (arg=00000000)
+0.217:0510:0538:trace:seh:dispatch_exception code=c0000005 (EXCEPTION_ACCESS_VIOLATION) flags=0 addr=000000007BDD1135
+0.217:0510:0538:trace:seh:dispatch_exception  info[0]=0000000000000000
+0.217:0510:0538:trace:seh:dispatch_exception  info[1]=0000000000002EC5
+0.217:0510:0538:trace:seh:dispatch_exception rip=000000007bdd110c rsp=000000010041f520 rbp=00000000056cf30c eflags=00000206
+0.217:0510:0538:trace:seh:dispatch_exception rax=0000000000000099 rbx=00000000056cf94c rcx=0000000000000014 rdx=000000007be3db90
+0.217:0510:0538:trace:seh:dispatch_exception rsi=00000000056cf2f4 rdi=000000007674aa30  r8=0000000000000000  r9=00006fffec4c03be
+0.217:0510:0538:trace:seh:dispatch_exception r10=0000000000000000 r11=0000000000000202 r12=0000000000144000 r13=000000010041fd24
+0.217:0510:0538:trace:seh:dispatch_exception r14=000000010041f520 r15=0000000000000000 mxcsr=00001f80 cs=002b ss=0000
+0.217:0510:0538:trace:seh:dispatch_exception code=c0000005 (EXCEPTION_ACCESS_VIOLATION) flags=0 addr=7BDD1135
+
+# main thread 0514 still in Rep+ .text at that moment:
+0.000:0510:0514:Call user32.RegisterClassExW(0026d8d8) ret=7773b8ef
+0.163:0510:0514:Call user32.RegisterClassExW(0026ef5c) ret=7674d93f

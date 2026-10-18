@@ -1,0 +1,40 @@
+#!/bin/bash
+# Refuse to commit proprietary game data or large binaries.
+# Enable with: git config core.hooksPath scripts/git-hooks
+status=0
+max_bytes=2000000
+git diff --cached --name-only --diff-filter=ACMR -z | while IFS= read -r -d '' f; do
+    size=$(git cat-file -s ":$f")
+    if [ "$size" -gt "$max_bytes" ]; then
+        echo "pre-commit: refusing $f ($size bytes > $max_bytes)" >&2
+        exit 1
+    fi
+    magic=$(git cat-file -p ":$f" | head -c 8 | od -An -tx1 | tr -d " \n")
+    case "$magic" in
+        4d5a*)                     kind="PE/MZ executable" ;;
+        cffaedfe*|cefaedfe*|cafebabe*|feedface*|feedfacf*) kind="Mach-O binary" ;;
+        7f454c46*)                 kind="ELF binary" ;;
+        41524348303030*)           kind="Isaac ARCH000 resource archive" ;;
+        *)                         kind="" ;;
+    esac
+    if [ -n "$kind" ]; then
+        echo "pre-commit: refusing $f ($kind)" >&2
+        exit 1
+    fi
+done || status=1
+
+# Optional blocklist: words that must never be committed.
+# One per line in .git/private-patterns, which lives outside the repository's files
+# and is never committed itself. Matching is case-insensitive on the added lines.
+patterns="$(git rev-parse --git-common-dir)/private-patterns"
+if [ -s "$patterns" ]; then
+    # blank lines in the file would match everything
+    hits=$(git diff --cached -U0 --no-color | grep '^+' | grep -v '^+++' \
+           | grep -i -F -f <(grep -v '^[[:space:]]*$' "$patterns") | head -5)
+    if [ -n "$hits" ]; then
+        echo "pre-commit: refusing: staged changes contain a private word from $patterns:" >&2
+        echo "$hits" | cut -c1-160 >&2
+        status=1
+    fi
+fi
+exit $status

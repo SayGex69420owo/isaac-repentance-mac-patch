@@ -1,0 +1,26 @@
+# Run 12: steam-traced-run.sh --no-overlay --mesa llvmpipe 120
+# MILESTONE: unmodified Rep+ reaches its main menu on Apple Silicon (pasted from the Mac by the user)
+per-app overrides for isaac-ng.exe: gameoverlayrenderer disabled; opengl32 native = Mesa 26.2.4 (GALLIUM_DRIVER=llvmpipe)
+game windows pid 0848, 8 threads, 315506 trace lines; no access violations
+exceptions: 40010006 x1400 (OutputDebugString), 4001000a x2, 406d1388 x2 (thread naming)
+one Wine err: 0798:err:virtual:virtual_setup_exception nested exception on signal stack addr 0x7ff81be66254
+MoltenVK 1.4.0 (Vulkan 1.4.323) initialised in-process (Wine's own internal use; zink not selected)
+
+engine log.txt (713 lines), start:
+  OpenGL version 4.6 (Compatibility Profile) Mesa 26.2.4 (git-9a0169f2a7) / GLSL version 4.60
+  Framebuffer ID 1, Renderbuffer 1024x1024
+  OpenAL Soft 1.24.3 (bundled OpenAL32.dll)
+  Using XInput 1.4
+  Theoraplayer 2.0 (libtheora 1.2.0alpha, libvorbis 1.3.4)
+  Game Version: J460; Lua 1 GiB reserved; enums.lua, main.lua run
+  Binding of Isaac: Repentance+ v1.9.7.17.J460; load archives: 5091 ms
+  Shader initialization: 20 shaders, start..end without errors
+  [ERROR] Couldn't retrieve previous version of options config   (fresh options.ini)
+  begin list mods; HQ4X 480x270; viewport 960x540, multiplier 2.25
+
+user observation:
+  - main menu shown; arrow keys work in the menu
+  - no save files
+  - mods are loaded; in a run, error messages from the installed mods are drawn on top of each other,
+    nothing visible
+  - controls do not work in-game; very laggy (llvmpipe = CPU rendering under Rosetta)

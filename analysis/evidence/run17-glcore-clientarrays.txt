@@ -1,0 +1,9 @@
+# Run 17: steam-traced-run.sh --no-overlay --glcore 180 (pasted by the user, report re-run)
+user: black window, nothing drawn
+build: dispatch slots shader_source_ARB vertex_attrib_pointer_ARB enable/disable_vertex_attrib_array_ARB draw_arrays draw_elements
+isaacgl: both Rep+ contexts 4.1 core, shared, VAO, GLSL translation (132 shader translations logged across runs 15-17)
+only GL diagnostic line:
+  [isaacgl] GL error 0x0506 after glDrawElements (emulated) (mode 4, draw #1)
+    0x0506 = GL_INVALID_FRAMEBUFFER_OPERATION; the draw used client-side arrays (emulation path taken)
+no "draws 50" counter line -> fewer than 50 draws reached draw_arrays/draw_elements in 181 s
+game kept calling wglSwapBuffers; no access violations; cpu ~112 %

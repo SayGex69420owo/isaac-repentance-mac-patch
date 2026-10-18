@@ -1,0 +1,13 @@
+# Run 15: steam-traced-run.sh --no-overlay --glcore 180 (pasted by the user)
+isaacgl.dylib: built with xcrun (x86_64), loaded via DYLD_INSERT_LIBRARIES through Steam, active in the Rep+ process:
+  [isaacgl] loaded in pid 8594 (.../wine/lib/wine/x86_64-unix/wine C:\Program Files (x86)\Steam\steamapps\common\The Binding of I...)
+  [isaacgl] Wine core context 0x7f95a58fba00 will be the share context
+  [isaacgl] legacy context request upgraded to 4.1 core (pixel format 0x600000be8140)   (x2)
+  [isaacgl] core 4.1 context ... for Rep+ (shared with 0x7f95a58fba00, default VAO 1 / 2)
+engine log: OpenGL version 4.1 Metal - 90.5 / GLSL version 4.10   (Apple's native GL on Metal, GPU)
+then every shader fails, e.g.:
+  Failed to compile vertex shader 'KAGE_ColorShader'. ERROR: 0:3: '' : #version required and missing.
+  ERROR: 0:3: 'attribute' : syntax error
+  (KAGE_ColorTextureShader, KAGE_IndexedTextureShader, ColorOffset*, Pixelation, Bloom, ColorMod, ColorCorrection, HQ4X, ...)
+followed by Lua stack trace, "Caught exception, writing minidump", unhandled page fault reading 0x44 at 0x00A6702E (isaac-ng .text);
+game exited after 27 s. No Mesa messages (Mesa not loaded).

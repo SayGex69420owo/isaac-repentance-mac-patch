@@ -1,0 +1,10 @@
+# Run 14: steam-traced-run.sh --no-overlay --mesa llvmpipe --core41 --no-mods 180 (pasted by the user)
+Mesa env: GALLIUM_DRIVER=llvmpipe MESA_DEBUG=1 MESA_GL_VERSION_OVERRIDE=4.1FC MESA_GLSL_VERSION_OVERRIDE=410
+outcome: still running after 95 s, cpu 193 %; user: BLACK SCREEN
+exceptions: 40010006 x342734 (debug strings: MESA_DEBUG output, ~3600/s), 4001000a x2, 406d1388 x2; no access violations
+engine log.txt (262 lines):
+  OpenGL version 4.1 (Core Profile) Mesa 26.2.4 / GLSL version 4.10
+  same init as run 12: OpenAL Soft, XInput 1.4, Theora, Lua, archives 5159 ms
+  Shader initialization: all 20 shaders, start..end, no shader errors
+  Viewport 960x540, multiplier 2.25, DP per point 1.0, point scale 2.0; begin list mods (EnableMods=0)
+report did not yet decode the debug strings (raised as dispatch_exception "..."); fixed in steam_trace_report.py
