@@ -4,15 +4,11 @@ Run the **Windows** version of *The Binding of Isaac: Repentance+* on an **Apple
 using Wine, Rosetta 2 and a small OpenGL compatibility layer. You use your own copy of the game
 from Steam. This repository contains no game files.
 
-> ### Made entirely with AI, just for fun
-> Every line of code, every script and every document here was written by an AI model
-> (Anthropic's Claude, used through Claude Code). The person who published this is not a
-> programmer and takes **no credit** for the code. They described what they wanted, ran the
-> commands on their own Mac, and reported back what happened. In other words, this was
-> "vibe coded" from start to finish.
->
-> It started as a hobby experiment and was tested on **one** Mac. Expect rough edges. Read
-> a script before you run it, and keep backups of your saves (see [Saves](#saves-read-this-first)).
+
+
+### DISCLAIMER
+This project is entirely vibecoded just for fun, and I decided to share it anonymously for anyone to fork, use, and/or improve since I don't want to take credit for AI slop. Im not a programmer by any means so there's probably ways to optimize this way more than I got to do using a LLM. This project was tested on a M5 Macbook Air 2026.
+Read about script before you run it, and keep backups of your saves (see [Saves](#saves-read-this-first)).
 
 ## What it is (and is not)
 
@@ -21,13 +17,13 @@ from Steam. This repository contains no game files.
   the same Wine environment and is logged in with your own account.
 - **It is not** a crack, a DRM bypass or a re-implementation of the game. Steam's ownership
   checks (SteamStub, steam_api) work as they normally do. If your Steam account does not own
-  Repentance+, it will not run. Do not ask for, or share, game files.
+  Repentance+, it will not run.
 - **Not affiliated** with Edmund McMillen, Nicalis, Valve, Apple, the Wine project or
   Anthropic. All trademarks belong to their owners.
 
-## Why not just plain Wine?
 
-This *is* Wine. The project adds what plain Wine was missing for this game. Each of these was
+
+The project adds what plain Wine was missing for this game. Each of these was
 observed with plain Wine on the test Mac:
 
 1. **Crash at start:** the Steam overlay crashes the game under WoW64 on macOS. Fix: disable the
